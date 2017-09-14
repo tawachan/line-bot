@@ -22,10 +22,9 @@ post '/callback' do
 
   events = client.parse_events_from(body)
   events.each { |event|
-
-    input = event.message['text']
     case event
     when Line::Bot::Event::Message
+      input = event.message['text']
       case event.type
       when Line::Bot::Event::MessageType::Text
         if input.include?('クリエイティブ') || input.include?('くりえいてぃぶ')
@@ -74,8 +73,8 @@ post '/callback' do
           packageId: "4",
           stickerId: "630"
         }
-        client.reply_message(event['replyToken'], messages)
       end
+      client.reply_message(event['replyToken'], messages)
     end
   }
   "OK"
