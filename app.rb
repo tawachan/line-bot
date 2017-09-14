@@ -26,6 +26,10 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
+        text = event.message['text']
+        if text.include?('クリエイティブ') || text.include?('くりえいてぃぶ')
+          text = "加速していこう(　･ิω･ิ)"
+        end
         message = {
           type: 'text',
           text: event.message['text']
