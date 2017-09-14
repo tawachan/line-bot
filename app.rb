@@ -8,6 +8,10 @@ def client
   }
 end
 
+get '/' do
+  "OTYM"
+end
+
 post '/callback' do
   body = request.body.read
 
