@@ -32,7 +32,7 @@ post '/callback' do
         end
         message = {
           type: 'text',
-          text: event.message['text']
+          text: text
         }
         client.reply_message(event['replyToken'], message)
       when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
