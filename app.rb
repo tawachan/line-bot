@@ -46,6 +46,7 @@ post '/callback' do
           originalContentUrl: "http://jprime.ismcdn.jp/mwimgs/3/7/300/img_37f0f7588da44f5908d0035aa8ab8dbe1711503.jpg",
           previewImageUrl: "http://jprime.ismcdn.jp/mwimgs/3/7/300/img_37f0f7588da44f5908d0035aa8ab8dbe1711503.jpg"
         }
+        client.reply_message(event['replyToken'], image)
       when Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
