@@ -92,7 +92,7 @@ post '/callback' do
             "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/66/be6b7b2b-de98-40df-ab5a-fd164b72ba91.jpg"
           ]
 
-          img = imgs[Randome.new.rand(imgs.length)]
+          img = imgs[Random.new.rand(imgs.length)]
 
           messages << {
             type: 'text',
