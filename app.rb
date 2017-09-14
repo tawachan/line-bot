@@ -74,12 +74,12 @@ post '/callback' do
           stickerId: "630"
         }
       end
-      if messages.blank?
-        messages << {
-          type: 'text',
-          text: input
-        }
-      end
+      # if messages.blank?
+      #   messages << {
+      #     type: 'text',
+      #     text: input
+      #   }
+      # end
       client.reply_message(event['replyToken'], messages)
     end
   }
