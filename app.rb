@@ -40,13 +40,18 @@ post '/callback' do
           text: text
         }
         client.reply_message(event['replyToken'], message)
-      when Line::Bot::Event::MessageType::Image, Line::Bot::Event::MessageType::Video
+      when Line::Bot::Event::MessageType::Image
+        image = {
+          type: "image",
+          originalContentUrl: "http://jprime.ismcdn.jp/mwimgs/3/7/300/img_37f0f7588da44f5908d0035aa8ab8dbe1711503.jpg",
+          previewImageUrl: "http://jprime.ismcdn.jp/mwimgs/3/7/300/img_37f0f7588da44f5908d0035aa8ab8dbe1711503.jpg"
+        }
+      when Line::Bot::Event::MessageType::Video
         response = client.get_message_content(event.message['id'])
         tf = Tempfile.open("content")
         tf.write(response.body)
       end
     end
   }
-
   "OK"
 end
