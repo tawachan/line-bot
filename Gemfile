@@ -4,6 +4,6 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem 'sinatra'
-gem 'mysql2'
 gem 'pry-rails'
 gem 'json'
+gem 'line-bot-api'
