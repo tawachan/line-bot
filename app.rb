@@ -54,6 +54,21 @@ post '/callback' do
             previewImageUrl: img
           }
         end
+
+        if input.include?('石原さとみ')
+          text = "石原さとみ(　･ิω･ิ)"
+          img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/61/85a15ca2-20a2-4e53-a9ff-9892590046f4.jpg"
+          messages << {
+            type: 'text',
+            text: text
+          }
+          messages << {
+            type: "image",
+            originalContentUrl: img,
+            previewImageUrl: img
+          }
+        end
+
         if messages.empty?
           messages << {
             type: 'text',
