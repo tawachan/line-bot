@@ -30,6 +30,11 @@ post '/callback' do
         if text.include?('クリエイティブ') || text.include?('くりえいてぃぶ')
           text = "加速していこう(　･ิω･ิ)"
         end
+
+        if text.include?('OTYM') || text.include?('otym') || text.include?('おたやま')
+          text = "OTYMの詳細はこちら → https://we-love-otym.herokuapp.com/index.htm"
+        end
+
         message = {
           type: 'text',
           text: text
