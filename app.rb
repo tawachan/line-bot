@@ -76,6 +76,13 @@ post '/callback' do
             text: text
           }
         end
+        if input.include?('おつやま')
+          text = "おつやま〜"
+          messages << {
+            type: 'text',
+            text: text
+          }
+        end
 
         if messages.empty?
           messages << {
