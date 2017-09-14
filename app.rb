@@ -32,7 +32,8 @@ post '/callback' do
         end
 
         if text.include?('OTYM') || text.include?('otym') || text.include?('おたやま')
-          text = "OTYMの詳細はこちら → https://we-love-otym.herokuapp.com/index.htm"
+          text = `OTYMの詳細はこちら
+                  → https://we-love-otym.herokuapp.com/index.html`
         end
 
         message = {
