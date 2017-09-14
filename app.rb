@@ -43,8 +43,8 @@ post '/callback' do
       when Line::Bot::Event::MessageType::Image
         image = {
           type: "image",
-          originalContentUrl: "http://jprime.ismcdn.jp/mwimgs/3/7/300/img_37f0f7588da44f5908d0035aa8ab8dbe1711503.jpg",
-          previewImageUrl: "http://jprime.ismcdn.jp/mwimgs/3/7/300/img_37f0f7588da44f5908d0035aa8ab8dbe1711503.jpg"
+          originalContentUrl: "https://scontent.cdninstagram.com/t51.2885-15/e35/p320x320/18445036_1683511491956162_1867566842474659840_n.jpg",
+          previewImageUrl: "https://scontent.cdninstagram.com/t51.2885-15/e35/p320x320/18445036_1683511491956162_1867566842474659840_n.jpg"
         }
         client.reply_message(event['replyToken'], image)
       when Line::Bot::Event::MessageType::Video
