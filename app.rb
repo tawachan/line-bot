@@ -45,8 +45,7 @@ post '/callback' do
           originalContentUrl: img,
           previewImageUrl: img
         }
-        client.reply_message(event['replyToken'], message)
-        client.reply_message(event['replyToken'], image)
+        client.reply_message(event['replyToken'], [message, image])
       when Line::Bot::Event::MessageType::Image
         text = "画像のお返し"
         img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/64/df2339cd-379c-402c-af74-d8adc2443b89.jpg"
@@ -59,8 +58,7 @@ post '/callback' do
           originalContentUrl: img,
           previewImageUrl: img
         }
-        client.reply_message(event['replyToken'], message)
-        client.reply_message(event['replyToken'], image)
+        client.reply_message(event['replyToken'], [message, image])
       when Line::Bot::Event::MessageType::Sticker
         sticker = {
           type: "sticker",
