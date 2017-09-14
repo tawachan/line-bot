@@ -84,6 +84,27 @@ post '/callback' do
           }
         end
 
+        if input.include?('てち')
+          text = "てち"
+          imgs = [
+            "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/67/75dbc927-42a3-4bc5-b41a-79555a8ab848.jpg",
+            "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/69/c7436979-8055-4f32-af2e-eae8eaeb155d.jpg",
+            "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/66/be6b7b2b-de98-40df-ab5a-fd164b72ba91.jpg"
+          ]
+
+          img = imgs[Randome.new.rand(imgs.length)]
+
+          messages << {
+            type: 'text',
+            text: text
+          }
+          messages << {
+            type: "image",
+            originalContentUrl: img,
+            previewImageUrl: img
+          }
+        end
+
         if messages.empty?
           messages << {
             type: 'text',
