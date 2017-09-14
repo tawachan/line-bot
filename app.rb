@@ -26,46 +26,55 @@ post '/callback' do
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        text = event.message['text']
-        if text.include?('クリエイティブ') || text.include?('くりえいてぃぶ')
-          text = "加速していこう(　･ิω･ิ)"
-        end
+        input = event.message['text']
 
-        if text.include?('OTYM') || text.include?('otym') || text.include?('おたやま')
+        if input.include?('クリエイティブ') || input.include?('くりえいてぃぶ')
+          messages = []
+          text = "加速していこう(　･ิω･ิ)"
+          img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/65/fccb8c38-56ec-4424-acc0-db65beff8bda.jpg"
+          messages << {
+            type: 'text',
+            text: text
+          }
+          messages << {
+            type: "image",
+            originalContentUrl: img,
+            previewImageUrl: img
+          }
+        end
+        if input.include?('OTYM') || input.include?('otym') || input.include?('おたやま')
           text = "OTYMの詳細はこちら → https://we-love-otym.herokuapp.com/index.html"
           img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/62/112b0fdf-4d53-4ac7-aae3-cf6acfee18ea.jpg"
+          messages << {
+            type: 'text',
+            text: text
+          }
+          messages << {
+            type: "image",
+            originalContentUrl: img,
+            previewImageUrl: img
+          }
         end
-
-        message = {
-          type: 'text',
-          text: text
-        }
-        image = {
-          type: "image",
-          originalContentUrl: img,
-          previewImageUrl: img
-        }
-        client.reply_message(event['replyToken'], [message, image])
       when Line::Bot::Event::MessageType::Image
         text = "画像のお返し"
         img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/64/df2339cd-379c-402c-af74-d8adc2443b89.jpg"
-        message = {
+
+        messages << {
           type: 'text',
           text: text
         }
-        image = {
+        messages << {
           type: "image",
           originalContentUrl: img,
           previewImageUrl: img
         }
-        client.reply_message(event['replyToken'], [message, image])
       when Line::Bot::Event::MessageType::Sticker
-        sticker = {
+        messages << {
           type: "sticker",
           packageId: "4",
           stickerId: "630"
         }
-        client.reply_message(event['replyToken'], sticker)
+        client.reply_message(event['replyToken'], messages)
       end
     end
   }
