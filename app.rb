@@ -22,12 +22,12 @@ post '/callback' do
 
   events = client.parse_events_from(body)
   events.each { |event|
+
+    input = event.message['text']
     case event
     when Line::Bot::Event::Message
       case event.type
       when Line::Bot::Event::MessageType::Text
-        input = event.message['text']
-
         if input.include?('クリエイティブ') || input.include?('くりえいてぃぶ')
           messages = []
           text = "加速していこう(　･ิω･ิ)"
