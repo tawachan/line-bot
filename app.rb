@@ -25,10 +25,10 @@ post '/callback' do
     case event
     when Line::Bot::Event::Message
       input = event.message['text']
+      messages = []
       case event.type
       when Line::Bot::Event::MessageType::Text
         if input.include?('クリエイティブ') || input.include?('くりえいてぃぶ')
-          messages = []
           text = "加速していこう(　･ิω･ิ)"
           img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/65/fccb8c38-56ec-4424-acc0-db65beff8bda.jpg"
           messages << {
