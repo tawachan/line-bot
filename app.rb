@@ -33,24 +33,41 @@ post '/callback' do
 
         if text.include?('OTYM') || text.include?('otym') || text.include?('おたやま')
           text = "OTYMの詳細はこちら → https://we-love-otym.herokuapp.com/index.html"
+          img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/62/112b0fdf-4d53-4ac7-aae3-cf6acfee18ea.jpg"
         end
 
         message = {
           type: 'text',
           text: text
         }
-        client.reply_message(event['replyToken'], message)
-      when Line::Bot::Event::MessageType::Image
         image = {
           type: "image",
-          originalContentUrl: "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/61/85a15ca2-20a2-4e53-a9ff-9892590046f4.jpg",
-          previewImageUrl: "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/61/85a15ca2-20a2-4e53-a9ff-9892590046f4.jpg"
+          originalContentUrl: img,
+          previewImageUrl: img
         }
+        client.reply_message(event['replyToken'], message)
         client.reply_message(event['replyToken'], image)
-      when Line::Bot::Event::MessageType::Video
-        response = client.get_message_content(event.message['id'])
-        tf = Tempfile.open("content")
-        tf.write(response.body)
+      when Line::Bot::Event::MessageType::Image
+        text = "画像のお返し"
+        img = "https://s3-ap-northeast-1.amazonaws.com/yotawaapp/uploads/image/image/64/df2339cd-379c-402c-af74-d8adc2443b89.jpg"
+        message = {
+          type: 'text',
+          text: text
+        }
+        image = {
+          type: "image",
+          originalContentUrl: img,
+          previewImageUrl: img
+        }
+        client.reply_message(event['replyToken'], message)
+        client.reply_message(event['replyToken'], image)
+      when Line::Bot::Event::MessageType::Sticker
+        sticker = {
+          type: "sticker",
+          packageId: "4",
+          stickerId: "630"
+        }
+        client.reply_message(event['replyToken'], sticker)
       end
     end
   }
